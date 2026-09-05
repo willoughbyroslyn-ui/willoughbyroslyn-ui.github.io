@@ -1,14 +1,8 @@
 html {
 	font-size: 110%;
-	background: white url("../img/animspace.gif") repeat;
+	background: #f4f4f6;
 }
 
-@media (min-width: 768px) {
-    html {
-        background: lavender;
-    }
-}
-  
   body a:link, body a:visited {
 	color: DarkBlue;
 	font-weight: 500;
@@ -22,8 +16,9 @@ html {
 	max-width: 630px;
 	padding: 40px 5%;
 	background: white;
-	box-shadow: 0 0 0 5px MidnightBlue inset;
-	margin: 0 auto; /* Center the content */
+	border: 1px solid #e2e2e6;
+	border-radius: 8px;
+	margin: 40px auto; /* Center the content */
   }
   
   header {
@@ -127,6 +122,10 @@ html {
   
 	#wrapper {
 	  padding: 20px 5%;
+	  margin: 0 auto;
+	  border-radius: 0;
+	  border-left: none;
+	  border-right: none;
 	}
   
 	ul {

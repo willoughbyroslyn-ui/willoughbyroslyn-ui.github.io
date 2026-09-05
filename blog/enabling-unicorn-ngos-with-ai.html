@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Enabling Unicorn NGOs with AI — Roslyn Willoughby</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Ideas, suggestions, and personal experience on how small, high-impact NGOs and campus offices can use AI to do more with less." />
+  <meta name="author" content="Roslyn Willoughby">
+  <link rel="icon" type="image/png" href="../rose_favi.png">
+  <link rel="stylesheet" href="../css/neustadt.css" type="text/css" media="all">
+  <link rel="shortcut icon" href="../rose_favi.png">
+  <link rel="canonical" href="https://willoughbyroslyn-ui.github.io/blog/enabling-unicorn-ngos-with-ai.html">
+
+  <style>
+    .back-link { display: inline-block; margin-bottom: 1rem; font-size: 0.9rem; }
+    .post-meta { color: #777; font-size: 0.85rem; margin-top: -0.5rem; margin-bottom: 1.5rem; }
+    code { background: #f4f4f4; padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.9em; }
+    .use-case { margin: 1.5rem 0; }
+    .use-case h3 { margin-bottom: 0.3rem; }
+  </style>
+</head>
+
+<body>
+  <div id="wrapper">
+    <header>
+      <a class="back-link" href="index.html">&larr; Back to blog</a>
+      <h1>Enabling Unicorn NGOs with AI</h1>
+      <p class="post-meta">2026 · Ideas, suggestions, and personal experience</p>
+    </header>
+
+    <p>By "unicorn NGOs" I mean the small, resource-strapped teams that end up serving an outsized number of people — a campus office, a food bank, a local nonprofit — where three or four staff are effectively running the operations of a much larger organization. I spent two years as an accommodations coordinator at a university access center, helping run services for a few thousand students with a small team of student staff. That kind of office runs on email, spreadsheets, and deadlines, and it's exactly the environment where a bit of applied AI can free up a disproportionate amount of time. This post is a mix of what I saw work, what I'd try next, and a practical starting stack for anyone who wants to build it.</p>
+
+    <p><em>A note on specifics: nothing below reproduces real records, figures, or cases from any organization I've worked with — these are illustrative, generic scenarios meant to show the pattern.</em></p>
+
+    <h2>Where the time actually goes</h2>
+    <p>Offices like this run on a handful of recurring, high-volume workflows: inbound emails from people requesting help, documents that need to be made accessible or processed, funding that has to be tracked against a budget, staff who need to be paid and scheduled, and compliance timelines that can't slip. None of these are exotic problems — they're just repetitive, detail-sensitive, and easy to under-resource. That combination is where AI tools are unusually well suited to help.</p>
+
+    <h2>Five use cases</h2>
+
+    <div class="use-case">
+      <h3>1. Inbox triage and drafting</h3>
+      <p>A shared inbox receiving dozens of requests a day (accommodation requests, deadline extensions, general questions) can be triaged automatically: classify each email by urgency and type, extract the key facts (who, what, by when), and draft a first-pass response for a human to review and send. This alone can cut response time from days to hours without changing headcount.</p>
+    </div>
+
+    <div class="use-case">
+      <h3>2. Document accessibility remediation</h3>
+      <p>Course materials and PDFs often arrive in formats that don't work with screen readers. LLM-assisted remediation — reflowing structure, adding alt text, converting scanned text to real text — can turn a backlog that used to take a specialist hours per document into something reviewed in minutes.</p>
+    </div>
+
+    <div class="use-case">
+      <h3>3. Funding and budget tracking</h3>
+      <p>Small offices frequently juggle several funding lines (grants, work-study, general funds) with different rules and reporting cadences. A simple dashboard that pulls spend-to-date against each budget line, and flags under- or over-utilization before a reporting deadline, replaces a lot of manual spreadsheet reconciliation.</p>
+    </div>
+
+    <div class="use-case">
+      <h3>4. Student worker payroll and scheduling</h3>
+      <p>Tracking hours, pay periods, and training/compliance records for a rotating group of student staff is exactly the kind of bookkeeping that's easy to fall behind on. Automating the reminders (timesheets due, certifications expiring, onboarding steps pending) keeps a small team from being the bottleneck.</p>
+    </div>
+
+    <div class="use-case">
+      <h3>5. Compliance timeline tracking</h3>
+      <p>Recurring institutional deadlines — semester certifications, renewal paperwork, reporting windows — are easy to track when there are five of them and easy to lose when there are fifty. A lightweight system that watches dates and pings the right person ahead of time turns a "we missed it" problem into a non-event.</p>
+    </div>
+
+    <h2>A practical stack to build this on</h2>
+    <p>None of this requires enterprise software. Here's roughly how I'd stand it up for a small team:</p>
+
+    <ul>
+      <li><b>Database:</b> Start with something you can stand up in an afternoon — <code>SQLite</code> or a free-tier <code>Postgres</code> instance if you're comfortable with SQL, or a structured tool like Airtable/Google Sheets if you're not. Move to Postgres once more than one process needs to write to it concurrently.</li>
+      <li><b>Connecting your sources:</b> Most of the source data already lives in email (Gmail/Outlook APIs) or forms (Google Forms, Microsoft Forms). A small script — Python with <code>google-api-python-client</code> or Microsoft Graph — can pull new messages or form responses into your database on a schedule.</li>
+      <li><b>Automating the queries:</b> A scheduled job (a cron job, or a serverless function on a free tier) re-runs your SQL each day or hour: recompute totals, flag anything past a threshold, and generate a plain-language summary with an LLM API call if you want a written digest instead of a raw table.</li>
+      <li><b>The dashboard:</b> For a first version, a free tool like Looker Studio or Metabase pointed at your database gets you 80% of the value with none of the build time. If you outgrow that, a small <code>Streamlit</code> or <code>Plotly Dash</code> app gives you full control for not much more effort.</li>
+    </ul>
+
+    <p>The honest advice is to start with the cheapest version of each piece — a spreadsheet instead of a database, a scheduled script instead of a platform, a free dashboard tool instead of custom code — and only add infrastructure once the manual version is visibly the bottleneck. Small teams don't need a data platform; they need the fifth of their week back that's currently going to repetitive work.</p>
+  </div>
+</body>
+</html>
