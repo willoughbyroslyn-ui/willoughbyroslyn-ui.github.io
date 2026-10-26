@@ -2,42 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Blog — Roslyn Willoughby</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Writing by Roslyn Willoughby on AI, research, and building things." />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog | Roslyn Willoughby</title>
+  <meta name="description" content="Writing by Roslyn Willoughby on AI, research, and putting AI to work in small organizations.">
+  <link rel="canonical" href="https://willoughbyroslyn-ui.github.io/blog/index.html">
   <meta name="author" content="Roslyn Willoughby">
   <link rel="icon" type="image/png" href="../rose_favi.png">
-  <link rel="stylesheet" href="../css/neustadt.css" type="text/css" media="all">
-  <link rel="shortcut icon" href="../rose_favi.png">
-  <link rel="canonical" href="https://willoughbyroslyn-ui.github.io/blog/index.html">
 
-  <style>
-    .post-list { list-style: none; padding-left: 0; margin: 2rem 0; }
-    .post-item { margin-bottom: 1.8rem; }
-    .post-date { display: block; color: #777; font-size: 0.85rem; margin-bottom: 0.2rem; }
-    .post-title { font-size: 1.1rem; font-weight: 600; }
-    .post-title a { text-decoration: none; }
-    .post-title a:hover { text-decoration: underline; }
-    .post-excerpt { color: #444; margin-top: 0.3rem; }
-    .back-link { display: inline-block; margin-bottom: 1rem; font-size: 0.9rem; }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../css/site.css">
 </head>
 
 <body>
-  <div id="wrapper">
-    <header>
-      <a class="back-link" href="../index.html">&larr; Back to home</a>
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="../index.html">Roslyn Willoughby</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#news">News</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#research">Research</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#awards">Awards</a></li>
+        <li><a href="index.html" aria-current="page">Blog</a></li>
+        <li><a href="../CV_Roslyn_Willoughby_Final.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <header class="page-head">
       <h1>Blog</h1>
-      <p>Notes on AI, research, and building things — written from Paris.</p>
+      <p class="lede">Notes on AI, research, and putting AI to work in small organizations.</p>
     </header>
 
     <ul class="post-list">
-      <li class="post-item">
-        <span class="post-date">2026</span>
-        <p class="post-title"><a href="enabling-unicorn-ngos-with-ai.html">Enabling Unicorn NGOs with AI</a></p>
-        <p class="post-excerpt">Ideas, suggestions, and personal experience on how small, high-impact NGOs can use AI to do more with less — from triaging inboxes to building a dashboard.</p>
+      <li>
+        <time datetime="2026-09-16">September 16, 2026</time>
+        <h2><a href="enabling-unicorn-ngos-with-ai.html">Enabling unicorn NGOs with AI</a></h2>
+        <p>Small teams don't need an AI strategy; they need a few hours back each week. Five common asks, what to do about each, and where AI can help.</p>
       </li>
     </ul>
-  </div>
+  </main>
+
+  <footer>
+    <span>Roslyn Willoughby, Austin, Texas</span>
+    <span><a href="mailto:willoughbyroslyn@gmail.com">willoughbyroslyn@gmail.com</a></span>
+  </footer>
+
+  <script src="../js/site.js"></script>
 </body>
 </html>

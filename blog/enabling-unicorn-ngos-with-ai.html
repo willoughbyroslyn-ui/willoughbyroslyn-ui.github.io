@@ -2,77 +2,141 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Enabling Unicorn NGOs with AI — Roslyn Willoughby</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Ideas, suggestions, and personal experience on how small, high-impact NGOs and campus offices can use AI to do more with less." />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enabling unicorn NGOs with AI | Roslyn Willoughby</title>
+  <meta name="description" content="How small, high-impact teams can use AI: start from the ask, decide what to do, and let AI take on the repetitive parts while people stay accountable.">
+  <link rel="canonical" href="https://willoughbyroslyn-ui.github.io/blog/enabling-unicorn-ngos-with-ai.html">
   <meta name="author" content="Roslyn Willoughby">
   <link rel="icon" type="image/png" href="../rose_favi.png">
-  <link rel="stylesheet" href="../css/neustadt.css" type="text/css" media="all">
-  <link rel="shortcut icon" href="../rose_favi.png">
-  <link rel="canonical" href="https://willoughbyroslyn-ui.github.io/blog/enabling-unicorn-ngos-with-ai.html">
 
-  <style>
-    .back-link { display: inline-block; margin-bottom: 1rem; font-size: 0.9rem; }
-    .post-meta { color: #777; font-size: 0.85rem; margin-top: -0.5rem; margin-bottom: 1.5rem; }
-    code { background: #f4f4f4; padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.9em; }
-    .use-case { margin: 1.5rem 0; }
-    .use-case h3 { margin-bottom: 0.3rem; }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../css/site.css">
 </head>
 
 <body>
-  <div id="wrapper">
-    <header>
-      <a class="back-link" href="index.html">&larr; Back to blog</a>
-      <h1>Enabling Unicorn NGOs with AI</h1>
-      <p class="post-meta">2026 · Ideas, suggestions, and personal experience</p>
-    </header>
-
-    <p>By "unicorn NGOs" I mean the small, resource-strapped teams that end up serving an outsized number of people — a campus office, a food bank, a local nonprofit — where three or four staff are effectively running the operations of a much larger organization. I spent two years as an accommodations coordinator at a university access center, helping run services for a few thousand students with a small team of student staff. That kind of office runs on email, spreadsheets, and deadlines, and it's exactly the environment where a bit of applied AI can free up a disproportionate amount of time. This post is a mix of what I saw work, what I'd try next, and a practical starting stack for anyone who wants to build it.</p>
-
-    <p><em>A note on specifics: nothing below reproduces real records, figures, or cases from any organization I've worked with — these are illustrative, generic scenarios meant to show the pattern.</em></p>
-
-    <h2>Where the time actually goes</h2>
-    <p>Offices like this run on a handful of recurring, high-volume workflows: inbound emails from people requesting help, documents that need to be made accessible or processed, funding that has to be tracked against a budget, staff who need to be paid and scheduled, and compliance timelines that can't slip. None of these are exotic problems — they're just repetitive, detail-sensitive, and easy to under-resource. That combination is where AI tools are unusually well suited to help.</p>
-
-    <h2>Five use cases</h2>
-
-    <div class="use-case">
-      <h3>1. Inbox triage and drafting</h3>
-      <p>A shared inbox receiving dozens of requests a day (accommodation requests, deadline extensions, general questions) can be triaged automatically: classify each email by urgency and type, extract the key facts (who, what, by when), and draft a first-pass response for a human to review and send. This alone can cut response time from days to hours without changing headcount.</p>
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="../index.html">Roslyn Willoughby</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#news">News</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#research">Research</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#awards">Awards</a></li>
+        <li><a href="index.html" aria-current="page">Blog</a></li>
+        <li><a href="../CV_Roslyn_Willoughby_Final.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
     </div>
+  </nav>
 
-    <div class="use-case">
-      <h3>2. Document accessibility remediation</h3>
-      <p>Course materials and PDFs often arrive in formats that don't work with screen readers. LLM-assisted remediation — reflowing structure, adding alt text, converting scanned text to real text — can turn a backlog that used to take a specialist hours per document into something reviewed in minutes.</p>
-    </div>
+  <main>
+    <article class="post">
+      <header class="page-head">
+        <h1>Enabling unicorn NGOs with AI</h1>
+        <p class="meta"><time datetime="2026-09-16">September 16, 2026</time>, 5 minute read</p>
+      </header>
 
-    <div class="use-case">
-      <h3>3. Funding and budget tracking</h3>
-      <p>Small offices frequently juggle several funding lines (grants, work-study, general funds) with different rules and reporting cadences. A simple dashboard that pulls spend-to-date against each budget line, and flags under- or over-utilization before a reporting deadline, replaces a lot of manual spreadsheet reconciliation.</p>
-    </div>
+      <p>By "unicorn NGOs" I mean the small teams that serve far more people than their size suggests: a campus office, a food bank, a local nonprofit, where three or four staff run the operations of a much larger organization. For more than two years I was a student supervisor in a university disability services office, where I trained new student workers, remediated documents, and kept student records up to date. Offices like that run on email, spreadsheets, and deadlines, and they rarely have time to step back and fix how the work gets done.</p>
 
-    <div class="use-case">
-      <h3>4. Student worker payroll and scheduling</h3>
-      <p>Tracking hours, pay periods, and training/compliance records for a rotating group of student staff is exactly the kind of bookkeeping that's easy to fall behind on. Automating the reminders (timesheets due, certifications expiring, onboarding steps pending) keeps a small team from being the bottleneck.</p>
-    </div>
+      <p>The main lesson I've taken from that work: small teams don't need an AI strategy. They need a few hours back each week, and the way to find them is to start from the ask, not the tool.</p>
 
-    <div class="use-case">
-      <h3>5. Compliance timeline tracking</h3>
-      <p>Recurring institutional deadlines — semester certifications, renewal paperwork, reporting windows — are easy to track when there are five of them and easy to lose when there are fifty. A lightweight system that watches dates and pings the right person ahead of time turns a "we missed it" problem into a non-event.</p>
-    </div>
+      <p class="keep-human">A note on specifics: nothing here comes from real records or cases at any organization I've worked with. The examples are generic, to show the pattern.</p>
 
-    <h2>A practical stack to build this on</h2>
-    <p>None of this requires enterprise software. Here's roughly how I'd stand it up for a small team:</p>
+      <h2>Start with the ask</h2>
+      <p>When a team says "we want to use AI," the useful next question is "what keeps falling behind?" I'd work through four steps before touching any tool:</p>
+      <ol>
+        <li><strong>Name the ask in the team's own words.</strong> "We can't keep up with email" is a better starting point than "we need automation."</li>
+        <li><strong>Map how the work happens today.</strong> Who touches it, how long each step takes, and where it usually breaks.</li>
+        <li><strong>Pick the smallest piece AI can help with.</strong> One workflow, with a person reviewing every output at first. Measure the time it takes before and after.</li>
+        <li><strong>Write it down.</strong> Save the instructions, templates, and prompts in a shared document so the process survives when staff change, which in small offices happens every semester.</li>
+      </ol>
 
-    <ul>
-      <li><b>Database:</b> Start with something you can stand up in an afternoon — <code>SQLite</code> or a free-tier <code>Postgres</code> instance if you're comfortable with SQL, or a structured tool like Airtable/Google Sheets if you're not. Move to Postgres once more than one process needs to write to it concurrently.</li>
-      <li><b>Connecting your sources:</b> Most of the source data already lives in email (Gmail/Outlook APIs) or forms (Google Forms, Microsoft Forms). A small script — Python with <code>google-api-python-client</code> or Microsoft Graph — can pull new messages or form responses into your database on a schedule.</li>
-      <li><b>Automating the queries:</b> A scheduled job (a cron job, or a serverless function on a free tier) re-runs your SQL each day or hour: recompute totals, flag anything past a threshold, and generate a plain-language summary with an LLM API call if you want a written digest instead of a raw table.</li>
-      <li><b>The dashboard:</b> For a first version, a free tool like Looker Studio or Metabase pointed at your database gets you 80% of the value with none of the build time. If you outgrow that, a small <code>Streamlit</code> or <code>Plotly Dash</code> app gives you full control for not much more effort.</li>
-    </ul>
+      <h2>Five common asks</h2>
 
-    <p>The honest advice is to start with the cheapest version of each piece — a spreadsheet instead of a database, a scheduled script instead of a platform, a free dashboard tool instead of custom code — and only add infrastructure once the manual version is visibly the bottleneck. Small teams don't need a data platform; they need the fifth of their week back that's currently going to repetitive work.</p>
-  </div>
+      <h3>1. "We can't keep up with the inbox"</h3>
+      <dl class="steps">
+        <dt>What to do</dt>
+        <dd>Pull a week of incoming messages and sort them into five to eight types, such as new requests, status questions, deadline extensions, and general information. Write one approved reply template for each type and decide which types always need a person.</dd>
+        <dt>How AI can help</dt>
+        <dd>Sort each new message by type and urgency, pull out the key facts (who, what, and by when), and draft a reply from the matching template. Staff review and send. Even this simple version can bring response times down from days to hours.</dd>
+      </dl>
+      <p class="keep-human">Keep it human: anything involving health, legal, or crisis information, and every message that actually goes out.</p>
+
+      <h3>2. "We have a backlog of documents that need to be accessible"</h3>
+      <dl class="steps">
+        <dt>What to do</dt>
+        <dd>List what's in the backlog, sort it by deadline, and agree on what "done" means: real text instead of scanned images, proper headings, a logical reading order, and alt text for images.</dd>
+        <dt>How AI can help</dt>
+        <dd>Convert scanned pages to text, suggest heading structure, draft alt text, and check each file against your checklist. Work that took a specialist hours per document becomes a review that takes minutes.</dd>
+      </dl>
+      <p class="keep-human">Keep it human: a final check with a screen reader, and anything technical, like math or diagrams, where a wrong description would mislead.</p>
+
+      <h3>3. "Our funder wants a report and the numbers are in five spreadsheets"</h3>
+      <dl class="steps">
+        <dt>What to do</dt>
+        <dd>Agree on the three to five numbers the funder actually asks for, then build one shared table that every number comes from.</dd>
+        <dt>How AI can help</dt>
+        <dd>Clean and combine the spreadsheets, write and explain the formulas or SQL behind each number, flag budget lines that are over- or under-spent before the deadline, and draft the written summary from the final figures.</dd>
+      </dl>
+      <p class="keep-human">Keep it human: checking every number against its source before the report goes out.</p>
+
+      <h3>4. "Training new staff takes too long"</h3>
+      <dl class="steps">
+        <dt>What to do</dt>
+        <dd>Have the most experienced person talk through how they actually do the job, record or take notes, and turn that into a checklist for the first two weeks.</dd>
+        <dt>How AI can help</dt>
+        <dd>Turn rough notes into a clear onboarding guide and FAQ, draft reminders for timesheets, trainings, and certifications that are due, and answer new staff's common questions from the guide, so senior staff aren't interrupted for the same answers each semester.</dd>
+      </dl>
+      <p class="keep-human">Keep it human: payroll decisions, performance conversations, and anything that depends on judgment about a person.</p>
+
+      <h3>5. "We keep almost missing deadlines"</h3>
+      <dl class="steps">
+        <dt>What to do</dt>
+        <dd>List every recurring deadline, including certifications, renewals, and reporting windows, with one owner for each.</dd>
+        <dt>How AI can help</dt>
+        <dd>Pull dates out of emails and documents into a shared calendar, and send a short weekly summary of what's due, who owns it, and what's at risk. Tracking five deadlines is easy; tracking fifty is where things slip.</dd>
+      </dl>
+      <p class="keep-human">Keep it human: deciding what to do when a deadline is at risk.</p>
+
+      <h2>What I'd keep in mind</h2>
+      <ul>
+        <li><strong>Protect people's information.</strong> Offices like these handle student and client records. Use tools your organization has approved, remove names and identifying details where you can, and check what your privacy rules allow before anything goes into an AI tool.</li>
+        <li><strong>Keep a person accountable for every output.</strong> AI drafts; staff decide. That's what makes the time savings safe to keep.</li>
+        <li><strong>Measure before and after.</strong> If a workflow took four hours a week and now takes one, that number is what earns support for the next project.</li>
+        <li><strong>Start with the cheapest version.</strong> A spreadsheet before a database, a template before a custom tool. Add more only when the simple version becomes the bottleneck.</li>
+        <li><strong>Train the team, not just the tool.</strong> A short session on how to write a good request and how to check the output does more than any setup.</li>
+      </ul>
+
+      <h2>A simple starting setup</h2>
+      <p>None of this requires enterprise software. A shared spreadsheet or Airtable base as the single source of truth; forms (Google Forms or Microsoft Forms) for anything people request; an AI assistant on an account your organization approves; and, once the manual version works, a small scheduled script that pulls new emails or form responses into the spreadsheet and produces the weekly summary. Free dashboard tools like Looker Studio can sit on top when people want to see the numbers.</p>
+
+      <p>Small teams don't need a data platform. They need back the fifth of their week that goes to repetitive work, so they can spend it on the people they serve.</p>
+
+      <a class="back" href="index.html">Back to all posts</a>
+    </article>
+  </main>
+
+  <footer>
+    <span>Roslyn Willoughby, Austin, Texas</span>
+    <span><a href="mailto:willoughbyroslyn@gmail.com">willoughbyroslyn@gmail.com</a></span>
+  </footer>
+
+  <script src="../js/site.js"></script>
 </body>
 </html>
