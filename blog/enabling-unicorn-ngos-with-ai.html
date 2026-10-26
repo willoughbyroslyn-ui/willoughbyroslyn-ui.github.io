@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Enabling unicorn NGOs with AI | Roslyn Willoughby</title>
-  <meta name="description" content="How small, high-impact teams can use AI: start from the ask, decide what to do, and let AI take on the repetitive parts while people stay accountable.">
+  <meta name="description" content="Most US nonprofits stay small, and very few ever reach the scale of a tech unicorn. How AI can give small teams the operational capacity to grow, with real numbers, costs, and a setup plan.">
   <link rel="canonical" href="https://willoughbyroslyn-ui.github.io/blog/enabling-unicorn-ngos-with-ai.html">
   <meta name="author" content="Roslyn Willoughby">
   <link rel="icon" type="image/png" href="../rose_favi.png">
@@ -49,13 +49,91 @@
     <article class="post">
       <header class="page-head">
         <h1>Enabling unicorn NGOs with AI</h1>
-        <p class="meta"><time datetime="2026-09-16">September 16, 2026</time>, 5 minute read</p>
+        <p class="meta"><time datetime="2026-09-16">September 16, 2026</time>, 9 minute read</p>
       </header>
 
-      <p>By "unicorn NGOs" I mean the small teams that serve far more people than their size suggests: a campus office, a food bank, a local nonprofit, where three or four staff run the operations of a much larger organization. For more than two years I was a student supervisor in a university disability services office, where I trained new student workers, remediated documents, and kept student records up to date. Offices like that run on email, spreadsheets, and deadlines, and they rarely have time to step back and fix how the work gets done.</p>
+      <p>The United States has about 1.6 million charities. Almost none of them ever get big. This post asks why, and whether AI can change that for the small teams doing most of the work.</p>
 
-      <p>The main lesson I've taken from that work: small teams don't need an AI strategy. They need a few hours back each week, and the way to find them is to start from the ask, not the tool.</p>
+      <h2>A sector of millions, mostly tiny</h2>
+      <p>In 1985 the IRS counted about 335,000 active public charities. By 1991 there were 516,554 registered 501(c)(3) organizations, and in 2004 the count passed one million. The IRS's 2025 Data Book puts it at about 1.6 million 501(c)(3)s, out of nearly 2.1 million tax-exempt organizations in total.<sup><a href="#ref-1">1</a>,<a href="#ref-2">2</a>,<a href="#ref-3">3</a></sup></p>
 
+      <figure class="fig">
+        <div class="chart-scroll"><svg viewBox="0 0 640 290" role="img" aria-labelledby="f1t f1d" class="chart">
+<title id="f1t">Number of US 501(c)(3) organizations, 1985 to 2025</title>
+<desc id="f1d">Grows from about 335,000 active public charities in 1985 to 516,554 in 1991, 1 million in 2004, 1.48 million in 2022 and about 1.6 million in 2025.</desc>
+<line class="grid" x1="64" x2="600" y1="250.0" y2="250.0"/>
+<text class="axis" x="54" y="254.0" text-anchor="end">0</text>
+<line class="grid" x1="64" x2="600" y1="187.2" y2="187.2"/>
+<text class="axis" x="54" y="191.2" text-anchor="end">0.5M</text>
+<line class="grid" x1="64" x2="600" y1="124.4" y2="124.4"/>
+<text class="axis" x="54" y="128.4" text-anchor="end">1M</text>
+<line class="grid" x1="64" x2="600" y1="61.7" y2="61.7"/>
+<text class="axis" x="54" y="65.7" text-anchor="end">1.5M</text>
+<text class="axis" x="64.0" y="272" text-anchor="middle">1985</text>
+<text class="axis" x="198.0" y="272" text-anchor="middle">1995</text>
+<text class="axis" x="332.0" y="272" text-anchor="middle">2005</text>
+<text class="axis" x="466.0" y="272" text-anchor="middle">2015</text>
+<text class="axis" x="600.0" y="272" text-anchor="middle">2025</text>
+<path class="line" d="M64.0,207.9 L144.4,185.1 L318.6,124.4 L559.8,64.2 L600.0,49.1"/>
+<circle class="dot hollow" cx="64.0" cy="207.9" r="5"><title>1985: 335,000</title></circle>
+<circle class="dot" cx="144.4" cy="185.1" r="5"><title>1991: 516,554</title></circle>
+<circle class="dot" cx="318.6" cy="124.4" r="5"><title>2004: 1 million</title></circle>
+<circle class="dot" cx="559.8" cy="64.2" r="5"><title>2022: 1.48 million</title></circle>
+<circle class="dot" cx="600.0" cy="49.1" r="5"><title>2025: 1.6 million</title></circle>
+<text class="label" x="74.0" y="227.9" text-anchor="start">335,000</text>
+<text class="label" x="308.6" y="112.4" text-anchor="end">1 million (2004)</text>
+<text class="label" x="590.0" y="37.1" text-anchor="end">~1.6 million</text>
+</svg></div>
+        <figcaption>Figure 1. Registered US 501(c)(3) organizations. The 1985 point (hollow) counts active public charities only, so it understates the total. Counts are from different IRS series and include some inactive organizations. Sources: IRS Statistics of Income; USAFacts; IRS 2025 Data Book.</figcaption>
+      </figure>
+
+      <p>Most of these organizations are very small. In 2012, two-thirds of the public charities that filed returns spent less than $500,000 a year. Together they accounted for under 2% of the sector's spending. The 5% that spent $10 million or more accounted for 86.5% of it.<sup><a href="#ref-4">4</a></sup> New nonprofits start even smaller: between 2004 and 2014, 80% of newly registered organizations had less than $25,000.<sup><a href="#ref-5">5</a></sup></p>
+
+      <figure class="fig">
+        <div class="chart-scroll"><svg viewBox="0 0 640 170" role="img" aria-labelledby="f2t f2d" class="chart">
+<title id="f2t">US public charities by yearly spending, 2012</title>
+<desc id="f2d">Charities spending under $500,000 are 66 percent of organizations but under 2 percent of spending. Charities spending $10 million or more are 5 percent of organizations and 86.5 percent of spending.</desc>
+<rect class="seg small" x="150" y="8" width="12" height="12" rx="3"/><text class="axis" x="168" y="18.5">Under $500K a year</text>
+<rect class="seg mid" x="300" y="8" width="12" height="12" rx="3"/><text class="axis" x="318" y="18.5">$500K to $10M</text>
+<rect class="seg large" x="450" y="8" width="12" height="12" rx="3"/><text class="axis" x="468" y="18.5">$10M or more</text>
+<text class="label" x="0" y="68">Share of charities</text>
+<rect class="seg small" x="150.0" y="46" width="312.1" height="34" rx="4"><title>Share of charities, Under $500K: 66%</title></rect>
+<text class="seglabel small" x="306.0" y="68" text-anchor="middle">66%</text>
+<rect class="seg mid" x="464.1" y="46" width="131.0" height="34" rx="4"><title>Share of charities, $500K to $10M: 28%</title></rect>
+<text class="seglabel mid" x="528.6" y="68" text-anchor="middle">28%</text>
+<rect class="seg large" x="597.1" y="46" width="22.9" height="34" rx="4"><title>Share of charities, $10M+: 5%</title></rect>
+<text class="axis" x="597.1" y="96" text-anchor="start">5%</text>
+<text class="label" x="0" y="126">Share of spending</text>
+<rect class="seg small" x="150.0" y="104" width="8.5" height="34" rx="4"><title>Share of spending, Under $500K: <2%</title></rect>
+<text class="axis" x="150.0" y="154" text-anchor="start"><2%</text>
+<rect class="seg mid" x="160.5" y="104" width="53.0" height="34" rx="4"><title>Share of spending, $500K to $10M: ~12%</title></rect>
+<text class="seglabel mid" x="186.0" y="126" text-anchor="middle">~12%</text>
+<rect class="seg large" x="215.5" y="104" width="404.6" height="34" rx="4"><title>Share of spending, $10M+: 86.5%</title></rect>
+<text class="seglabel large" x="416.7" y="126" text-anchor="middle">86.5%</text>
+</svg></div>
+        <figcaption>Figure 2. US public charities by yearly spending, 2012. The middle group's share of spending is calculated from the other two. Source: Urban Institute, <em>The Nonprofit Sector in Brief 2014</em>.</figcaption>
+      </figure>
+
+      <h2>Who gets to start one</h2>
+      <p>Research on nonprofit founders paints a consistent picture. In one study, founders averaged 53 years old, and 89% held at least a bachelor's degree, compared with 37.7% of US adults. Most founding teams brought ten or more years of private-sector experience, and 74% of founders were white.<sup><a href="#ref-6">6</a>,<a href="#ref-7">7</a></sup></p>
+      <p>Starting and growing an organization takes time, credentials, and networks that most people don't have. The people closest to a problem are often not the ones with the capacity to build the solution. If AI can supply some of that capacity, more people could start and grow an organization.</p>
+
+      <h2>What would a nonprofit unicorn look like?</h2>
+      <p>In 2013, investor Aileen Lee coined "unicorn" for a startup valued at $1 billion or more. She found 39 US software companies that qualified, about 1 in 1,538 of those funded in the previous decade, by her estimate.<sup><a href="#ref-8">8</a></sup></p>
+      <p>Nonprofits don't have valuations, but they can be measured by reach and revenue. Bridgespan tracked the more than 200,000 nonprofits founded in the US between 1975 and 2008, excluding hospitals and universities. Only 201 reached $50 million in annual revenue, and only five passed $1 billion.<sup><a href="#ref-9">9</a></sup></p>
+
+      <figure class="fig stats" aria-label="Nonprofits founded 1975 to 2008 and how many grew large">
+        <div class="stat"><span class="stat-num">200,000+</span><span class="stat-label">US nonprofits founded, 1975 to 2008</span></div>
+        <div class="stat"><span class="stat-num">201</span><span class="stat-label">reached $50 million a year, about 1 in 1,000</span></div>
+        <div class="stat"><span class="stat-num">5</span><span class="stat-label">passed $1 billion a year, about 1 in 40,000</span></div>
+        <figcaption>Figure 3. How rarely nonprofits grow large. Source: Bradach and Kim, Bridgespan.</figcaption>
+      </figure>
+
+      <p>So in this post, a <strong>unicorn NGO</strong> is one that reaches $1 billion in annual revenue or meaningfully changes the lives of a million people. Bridgespan found something else worth noting: more than 90% of the organizations that passed $50 million relied on one dominant funding source, often government contracts or program fees.<sup><a href="#ref-9">9</a>,<a href="#ref-10">10</a></sup> Winning and keeping that kind of funding takes a lot of administrative capacity: applications, compliance, reporting, and records. That capacity is exactly what small teams lack.</p>
+
+      <h2>Where the time actually goes</h2>
+      <p>For more than two years I was a student supervisor in a university disability services office. A small team supported about 2,000 students. My week went to hiring paperwork and onboarding checklists for new student workers, training sessions, converting documents into accessible formats, and keeping student records up to date. None of it was optional, and most of it repeated every semester.</p>
+      <p>That's what time looks like in most small organizations: high-volume, detail-sensitive work that grows with the number of people served. It is also where AI can return a disproportionate amount of time.</p>
       <p class="keep-human">A note on specifics: nothing here comes from real records or cases at any organization I've worked with. The examples are generic, to show the pattern.</p>
 
       <h2>Start with the ask</h2>
@@ -64,7 +142,7 @@
         <li><strong>Name the ask in the team's own words.</strong> "We can't keep up with email" is a better starting point than "we need automation."</li>
         <li><strong>Map how the work happens today.</strong> Who touches it, how long each step takes, and where it usually breaks.</li>
         <li><strong>Pick the smallest piece AI can help with.</strong> One workflow, with a person reviewing every output at first. Measure the time it takes before and after.</li>
-        <li><strong>Write it down.</strong> Save the instructions, templates, and prompts in a shared document so the process survives when staff change, which in small offices happens every semester.</li>
+        <li><strong>Write it down.</strong> Save the instructions, templates, and prompts in a shared document so the process survives staff turnover.</li>
       </ol>
 
       <h2>Five common asks</h2>
@@ -74,7 +152,7 @@
         <dt>What to do</dt>
         <dd>Pull a week of incoming messages and sort them into five to eight types, such as new requests, status questions, deadline extensions, and general information. Write one approved reply template for each type and decide which types always need a person.</dd>
         <dt>How AI can help</dt>
-        <dd>Sort each new message by type and urgency, pull out the key facts (who, what, and by when), and draft a reply from the matching template. Staff review and send. Even this simple version can bring response times down from days to hours.</dd>
+        <dd>Sort each new message by type and urgency, pull out the key facts (who, what, and by when), and draft a reply from the matching template for staff to review and send.</dd>
       </dl>
       <p class="keep-human">Keep it human: anything involving health, legal, or crisis information, and every message that actually goes out.</p>
 
@@ -83,7 +161,7 @@
         <dt>What to do</dt>
         <dd>List what's in the backlog, sort it by deadline, and agree on what "done" means: real text instead of scanned images, proper headings, a logical reading order, and alt text for images.</dd>
         <dt>How AI can help</dt>
-        <dd>Convert scanned pages to text, suggest heading structure, draft alt text, and check each file against your checklist. Work that took a specialist hours per document becomes a review that takes minutes.</dd>
+        <dd>Convert scanned pages to text, suggest heading structure, draft alt text, and check each file against your checklist, so a specialist reviews instead of rebuilding.</dd>
       </dl>
       <p class="keep-human">Keep it human: a final check with a screen reader, and anything technical, like math or diagrams, where a wrong description would mislead.</p>
 
@@ -92,41 +170,114 @@
         <dt>What to do</dt>
         <dd>Agree on the three to five numbers the funder actually asks for, then build one shared table that every number comes from.</dd>
         <dt>How AI can help</dt>
-        <dd>Clean and combine the spreadsheets, write and explain the formulas or SQL behind each number, flag budget lines that are over- or under-spent before the deadline, and draft the written summary from the final figures.</dd>
+        <dd>Clean and combine the spreadsheets, write and explain the formulas behind each number, flag budget lines that are over- or under-spent before the deadline, and draft the written summary from the final figures.</dd>
       </dl>
       <p class="keep-human">Keep it human: checking every number against its source before the report goes out.</p>
 
-      <h3>4. "Training new staff takes too long"</h3>
+      <h3>4. "Hiring and training new staff takes too long"</h3>
       <dl class="steps">
         <dt>What to do</dt>
-        <dd>Have the most experienced person talk through how they actually do the job, record or take notes, and turn that into a checklist for the first two weeks.</dd>
+        <dd>Write down the real process once: every form, approval, and training step from offer to first shift, with an owner for each.</dd>
         <dt>How AI can help</dt>
-        <dd>Turn rough notes into a clear onboarding guide and FAQ, draft reminders for timesheets, trainings, and certifications that are due, and answer new staff's common questions from the guide, so senior staff aren't interrupted for the same answers each semester.</dd>
+        <dd>Turn rough notes into an onboarding guide and checklist, track which paperwork each new hire still owes, send reminders, and answer new staff's common questions from the guide.</dd>
       </dl>
-      <p class="keep-human">Keep it human: payroll decisions, performance conversations, and anything that depends on judgment about a person.</p>
+      <p class="keep-human">Keep it human: hiring and pay decisions, and anything that depends on judgment about a person.</p>
 
       <h3>5. "We keep almost missing deadlines"</h3>
       <dl class="steps">
         <dt>What to do</dt>
-        <dd>List every recurring deadline, including certifications, renewals, and reporting windows, with one owner for each.</dd>
+        <dd>List every recurring deadline, including certifications, renewals, grant reports, and compliance windows, with one owner for each.</dd>
         <dt>How AI can help</dt>
-        <dd>Pull dates out of emails and documents into a shared calendar, and send a short weekly summary of what's due, who owns it, and what's at risk. Tracking five deadlines is easy; tracking fifty is where things slip.</dd>
+        <dd>Pull dates out of emails and documents into a shared calendar, and send a short weekly summary of what's due, who owns it, and what's at risk.</dd>
       </dl>
       <p class="keep-human">Keep it human: deciding what to do when a deadline is at risk.</p>
 
-      <h2>What I'd keep in mind</h2>
+      <h2>The same pattern in other organizations</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Organization</th><th scope="col">The ask</th><th scope="col">How AI can help</th></tr></thead>
+          <tbody>
+            <tr><td>Food bank</td><td>"Partner pantries order by phone and email, and we can't see what's running low."</td><td>Turn orders into one inventory sheet, flag shortages, and draft weekly allocation summaries.</td></tr>
+            <tr><td>Free clinic</td><td>"Intake forms pile up and patients miss appointments."</td><td>Summarize intake forms for staff review and draft reminder messages in each patient's language.</td></tr>
+            <tr><td>Refugee resettlement agency</td><td>"Every family's case has dozens of documents and deadlines."</td><td>Build a checklist per case, track deadlines, and draft plain-language translations for staff to check.</td></tr>
+            <tr><td>Tutoring program</td><td>"Matching volunteers to students takes days."</td><td>Match on subject, schedule, and location, and draft introduction emails.</td></tr>
+            <tr><td>Animal shelter</td><td>"Adoption applications sit unread for a week."</td><td>Sort applications against the shelter's criteria and flag missing information.</td></tr>
+            <tr><td>Mutual-aid group</td><td>"Requests come in through five different channels."</td><td>Collect requests into one list, sort them by need, and draft volunteer assignments.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Which tool, and what it costs</h2>
+      <p>Anthropic offers three ways to use Claude, and a small organization will usually need them in this order:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Tool</th><th scope="col">Who uses it</th><th scope="col">What it's for</th></tr></thead>
+          <tbody>
+            <tr><td><strong>The Claude app</strong></td><td>Every staff member</td><td>Drafting, summarizing, building documents and spreadsheets, and working across connected tools like Google Workspace or Microsoft 365. No code needed.</td></tr>
+            <tr><td><strong>Claude Code</strong></td><td>One staff member or volunteer who's comfortable with a little code</td><td>Building small tools: a script that pulls form responses into a spreadsheet, or a simple dashboard. Included in paid plans.</td></tr>
+            <tr><td><strong>The Claude API</strong></td><td>A builder, once a workflow is proven</td><td>Running a workflow automatically, such as sorting every new email as it arrives. Billed by usage.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Prices, as listed on Anthropic's site on October 26, 2026:<sup><a href="#ref-11">11</a>,<a href="#ref-12">12</a>,<a href="#ref-13">13</a></sup></p>
       <ul>
-        <li><strong>Protect people's information.</strong> Offices like these handle student and client records. Use tools your organization has approved, remove names and identifying details where you can, and check what your privacy rules allow before anything goes into an AI tool.</li>
-        <li><strong>Keep a person accountable for every output.</strong> AI drafts; staff decide. That's what makes the time savings safe to keep.</li>
-        <li><strong>Measure before and after.</strong> If a workflow took four hours a week and now takes one, that number is what earns support for the next project.</li>
-        <li><strong>Start with the cheapest version.</strong> A spreadsheet before a database, a template before a custom tool. Add more only when the simple version becomes the bottleneck.</li>
-        <li><strong>Train the team, not just the tool.</strong> A short session on how to write a good request and how to check the output does more than any setup.</li>
+        <li><strong>Team plan:</strong> $20 per seat per month billed annually, or $25 monthly. Verified nonprofits pay $8 per user per month, or $3 for nonprofits in low- and middle-income countries. Verification for US 501(c)(3)s takes a few minutes through Goodstack. A five-person team would pay $40 a month at the nonprofit rate.</li>
+        <li><strong>API:</strong> per million tokens, Claude Haiku 5.5 costs $0.10 for input and $0.50 for output, and Claude Sonnet 5.5 costs $2 for input and $10 for output. Work that doesn't need an instant answer can use the Batch API at half price.</li>
+        <li><strong>Training:</strong> Anthropic's "AI Fluency for Nonprofits" course is free.</li>
       </ul>
 
-      <h2>A simple starting setup</h2>
-      <p>None of this requires enterprise software. A shared spreadsheet or Airtable base as the single source of truth; forms (Google Forms or Microsoft Forms) for anything people request; an AI assistant on an account your organization approves; and, once the manual version works, a small scheduled script that pulls new emails or form responses into the spreadsheet and produces the weekly summary. Free dashboard tools like Looker Studio can sit on top when people want to see the numbers.</p>
+      <p>What typical automated workflows would cost per month at those API rates:</p>
+      <div class="table-wrap">
+        <table class="num">
+          <thead><tr><th scope="col">Workflow</th><th scope="col">Model</th><th scope="col">Assumed size</th><th scope="col">Cost per month</th></tr></thead>
+          <tbody>
+            <tr><td>Sort 1,000 incoming emails</td><td>Haiku 5.5</td><td>1,500 tokens in, 100 out, per email</td><td>about $0.20</td></tr>
+            <tr><td>Draft 1,000 replies for review</td><td>Sonnet 5.5</td><td>2,000 tokens in, 400 out, per reply</td><td>about $8</td></tr>
+            <tr><td>Check 100 document pages for accessibility</td><td>Sonnet 5.5</td><td>6,000 tokens in and out, per page</td><td>about $7</td></tr>
+            <tr><td>Weekly deadline summary</td><td>Sonnet 5.5</td><td>20,000 tokens in, 1,500 out, 4 times a month</td><td>under $1</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="keep-human">These are estimates based on the assumed sizes above. Real costs depend on message length and setup. Together, these four workflows come to under $20 a month.</p>
 
-      <p>Small teams don't need a data platform. They need back the fifth of their week that goes to repetitive work, so they can spend it on the people they serve.</p>
+      <h2>A simple setup</h2>
+      <ol>
+        <li><strong>Week 1:</strong> verify nonprofit status, buy Team seats for the core staff, and connect the email and file tools you already use.</li>
+        <li><strong>Weeks 2 to 4:</strong> pick one ask, write the templates, and use the Claude app with a person reviewing every output. Track the time saved.</li>
+        <li><strong>Month 2:</strong> once the workflow is stable, use Claude Code to build the small piece that removes the copying and pasting, such as a script that collects form responses into one sheet.</li>
+        <li><strong>Later:</strong> move the high-volume, proven workflows to the API so they run on their own, with staff checking the results.</li>
+      </ol>
+
+      <h2>What I'd keep in mind</h2>
+      <ul>
+        <li><strong>Protect people's information.</strong> Small offices handle sensitive records. Use accounts your organization controls, remove names and identifying details where you can, and check what your privacy rules allow before anything goes into an AI tool.</li>
+        <li><strong>Keep a person accountable for every output.</strong> AI drafts; staff decide. That's what makes the time savings safe to keep.</li>
+        <li><strong>Measure before and after.</strong> If a workflow took four hours a week and now takes one, that number is what earns support for the next project.</li>
+        <li><strong>Start with the cheapest version.</strong> A spreadsheet before a database, a template before a custom tool.</li>
+      </ul>
+
+      <h2>The bigger point</h2>
+      <p>Most nonprofits stay small, and the few that grow have the administrative capacity to win large, steady funding and serve people at scale. Until recently, that capacity came from hiring. AI won't replace the people who know a community best, but it can give a five-person team some of the operational capacity of a much larger organization. That could let more people start organizations, and help the good ones grow.</p>
+
+      <section class="refs" aria-labelledby="refs-h">
+        <h2 id="refs-h">References</h2>
+        <ol>
+          <li id="ref-1">Internal Revenue Service, Statistics of Income. <a href="https://www.irs.gov/pub/irs-soi/tehistory.pdf"><em>A History of the Tax-Exempt Sector: An SOI Perspective</em></a>.</li>
+          <li id="ref-2">USAFacts. <a href="https://usafacts.org/articles/how-many-nonprofits-are-there-in-the-us/">How many nonprofits are there in the US?</a> November 16, 2023.</li>
+          <li id="ref-3">Nonprofit Issues. <a href="https://www.nonprofitissues.com/article/irs-exempt-organizations-reach-nearly-21-million">IRS exempt organizations reach nearly 2.1 million</a>, citing the <a href="https://www.irs.gov/pub/irs-pdf/p55b.pdf">IRS 2025 Data Book</a>.</li>
+          <li id="ref-4">McKeever, B. S., and Pettijohn, S. L. <a href="https://arcsfoundation.org/files/default/images/user50/413277-nonprofit-sector-in-brief-2014.pdf"><em>The Nonprofit Sector in Brief 2014</em></a>. Urban Institute, October 2014.</li>
+          <li id="ref-5">McLean, C. <a href="https://nonprofitquarterly.org/vital-records-births-and-deaths-in-the-nonprofit-sector/">Vital Records: Births and Deaths in the Nonprofit Sector</a>. <em>Nonprofit Quarterly</em>, December 30, 2014.</li>
+          <li id="ref-6">Fetsch, E. <a href="https://kauffman.org/currents/six-ways-non-profit-entrepreneurs-are-distinct-from-traditional-entrepreneurs">Six ways nonprofit entrepreneurs are distinct from traditional entrepreneurs</a>. Kauffman Foundation, March 30, 2015, summarizing research by David M. Van Slyke and Jesse D. Lecy.</li>
+          <li id="ref-7">US Census Bureau. <a href="https://www.census.gov/newsroom/press-releases/2023/educational-attainment-data.html">Census Bureau Releases New Educational Attainment Data</a>. February 16, 2023.</li>
+          <li id="ref-8">Lee, A. <a href="https://techcrunch.com/2013/11/02/welcome-to-the-unicorn-club/">Welcome To The Unicorn Club: Learning From Billion-Dollar Startups</a>. <em>TechCrunch</em>, November 2, 2013.</li>
+          <li id="ref-9">Bradach, J. L., and Kim, P. <a href="https://www.bridgespan.org/insights/why-more-nonprofits-are-getting-bigger">Why More Nonprofits Are Getting Bigger</a>. The Bridgespan Group.</li>
+          <li id="ref-10">Foster, W., and Fine, G. <a href="https://www.bridgespan.org/insights/how-nonprofits-get-really-big">How Nonprofits Get Really Big</a>. The Bridgespan Group, 2007.</li>
+          <li id="ref-11">Anthropic. <a href="https://claude.com/pricing">Claude plans and pricing</a>. Accessed October 26, 2026.</li>
+          <li id="ref-12">Anthropic. <a href="https://claude.com/solutions/nonprofits">Claude for Nonprofits</a>. Accessed October 26, 2026.</li>
+          <li id="ref-13">Anthropic. <a href="https://platform.claude.com/docs/en/about-claude/pricing">Claude API pricing</a>. Accessed October 26, 2026.</li>
+        </ol>
+      </section>
 
       <a class="back" href="index.html">Back to all posts</a>
     </article>
