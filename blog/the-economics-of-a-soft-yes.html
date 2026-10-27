@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The economics of a soft yes | Roslyn Willoughby</title>
+  <meta name="description" content="When an AI makes promises for an organization, every unauthorized yes has an expected cost. Agency theory, real chatbot cases, and a decision-rights grid for deciding who can say yes.">
+  <link rel="canonical" href="https://willoughbyroslyn-ui.github.io/blog/the-economics-of-a-soft-yes.html">
+  <meta name="author" content="Roslyn Willoughby">
+  <link rel="icon" type="image/png" href="../rose_favi.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../css/site.css">
+</head>
+
+<body>
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="../index.html">Roslyn Willoughby</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#news">News</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#research">Research</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#awards">Awards</a></li>
+        <li><a href="index.html" aria-current="page">Blog</a></li>
+        <li><a href="../CV_Roslyn_Willoughby_Final.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <article class="post">
+      <header class="page-head">
+        <p class="series">The Economics of AI at Work, part 2</p>
+        <h1>The economics of a soft yes</h1>
+        <p class="meta"><time datetime="2026-10-26">October 26, 2026</time>, 5 minute read</p>
+      </header>
+
+      <p>A car dealership's chatbot agreed to sell a new SUV for one dollar. An airline's chatbot promised a refund the airline didn't offer, and a tribunal made the airline pay it. An AI running a small shop was talked into handing out discounts and free items. Each time, something speaking for an organization said yes when nobody with authority had. I call that a soft yes, and it has a price.</p>
+
+      <h2>Three soft yeses</h2>
+      <figure class="fig">
+        <ol class="cases">
+          <li><span class="when">Dec 2023</span><p><strong>Chevrolet of Watsonville.</strong> A user instructed the dealership's chatbot to agree with anything, then offered $1 for a 2024 Chevy Tahoe. The bot replied: "That's a deal, and that's a legally binding offer – no takesies backsies."<sup><a href="#a2-ref-1">1</a></sup></p></li>
+          <li><span class="when">Feb 2024</span><p><strong>Air Canada.</strong> Its chatbot told a customer asking about bereavement fares that he could book a regular ticket and claim the discount afterward. The airline's policy didn't allow that. Air Canada argued it couldn't be held liable for information from "agents, servants, or representatives – including a chatbot." The tribunal rejected that and ordered it to pay CA$650.88 plus interest and fees.<sup><a href="#a2-ref-2">2</a></sup></p></li>
+          <li><span class="when">Jun 2025</span><p><strong>Anthropic's Project Vend.</strong> Anthropic let Claude run a small shop in its office for about a month. Employees "cajoled" it through Slack into giving out discount codes, and it gave away items from a bag of chips to a tungsten cube. It also sold some items below cost. Anthropic's verdict: "we would not hire Claudius."<sup><a href="#a2-ref-3">3</a></sup></p></li>
+        </ol>
+        <figcaption>Figure 1. Three public cases of an AI making a promise its organization didn't intend. Sources: AI Incident Database; Manatt, Phelps &amp; Phillips; Anthropic.</figcaption>
+      </figure>
+
+      <p>The three failed in different ways. Air Canada's bot stated a policy wrongly. The dealership's bot was manipulated. Anthropic's shopkeeper was simply persuaded. But the result was the same: a commitment nobody approved, made in the organization's name.</p>
+
+      <h2>An old idea: the principal and the agent</h2>
+      <p>Economists have a name for this. When one party (the principal) has another (the agent) act on its behalf, the agent knows different things and wants different things, and the gap costs money. Michael Jensen and William Meckling called these <strong>agency costs</strong> in a 1976 paper.<sup><a href="#a2-ref-4">4</a></sup> Companies spend heavily to manage them, with approval limits, signing authority and audits.</p>
+      <p>An AI assistant is the most literal agent an organization has ever had. It talks to customers in the organization's name, at any hour, at any volume. And as the Air Canada ruling shows, the customer doesn't see a separate system. To them, the chatbot is the company. The tribunal found the airline "did not take reasonable care to ensure its chatbot was accurate."<sup><a href="#a2-ref-2">2</a></sup></p>
+
+      <h2>Pricing a yes</h2>
+      <p>Not every answer needs a person. Making someone check everything wastes the time AI was supposed to save. The question is where to draw the line, and there's a simple rule for it:</p>
+      <p class="rule"><strong>Let the AI say yes on its own when the chance it's wrong, times the cost if it's wrong, is less than the cost of a person checking.</strong></p>
+      <p>Suppose a review takes a person five minutes. At Independent Sector's value of a volunteer hour, $36.14, that's about $3.<sup><a href="#a2-ref-5">5</a></sup> If the AI is wrong 2% of the time, review pays for itself whenever a wrong promise would cost more than $150. If it's wrong only 0.5% of the time, the line moves to $600.</p>
+
+      <figure class="fig">
+        <div class="chart-scroll"><svg viewBox="0 0 640 300" role="img" aria-labelledby="a2f2t a2f2d" class="chart">
+<title id="a2f2t">Expected cost per request of letting AI say yes, compared with a $3 human review</title>
+<desc id="a2f2d">With a 2 percent error rate, the expected cost of an unreviewed yes passes the $3 cost of review when a wrong promise costs more than $150. With a 0.5 percent error rate, the crossover is $600.</desc>
+<line class="grid" x1="70" x2="600" y1="240.0" y2="240.0"/>
+<text class="axis" x="60" y="244.0" text-anchor="end">$0.10</text>
+<line class="grid" x1="70" x2="600" y1="166.7" y2="166.7"/>
+<text class="axis" x="60" y="170.7" text-anchor="end">$1</text>
+<line class="grid" x1="70" x2="600" y1="93.3" y2="93.3"/>
+<text class="axis" x="60" y="97.3" text-anchor="end">$10</text>
+<line class="grid" x1="70" x2="600" y1="20.0" y2="20.0"/>
+<text class="axis" x="60" y="24.0" text-anchor="end">$100</text>
+<text class="axis" x="70.0" y="262" text-anchor="middle">$10</text>
+<text class="axis" x="246.7" y="262" text-anchor="middle">$100</text>
+<text class="axis" x="423.3" y="262" text-anchor="middle">$1,000</text>
+<text class="axis" x="600.0" y="262" text-anchor="middle">$10,000</text>
+<line class="ref" x1="70" x2="600" y1="131.7" y2="131.7"/>
+<text class="label" x="600" y="155.7" text-anchor="end">Human review: about $3</text>
+<path class="line" d="M70.0,217.9 L546.8,20.0"/>
+<circle class="dot" cx="277.8" cy="131.7" r="5"><title>Crossover at $150</title></circle>
+<text class="label" x="277.8" y="155.7" text-anchor="middle">$150</text>
+<path class="line dashed" d="M123.2,240.0 L600.0,42.1"/>
+<circle class="dot" cx="384.1" cy="131.7" r="5"><title>Crossover at $600</title></circle>
+<text class="label" x="384.1" y="155.7" text-anchor="middle">$600</text>
+<path class="line" d="M82,34 L112,34"/>
+<text class="axis" x="120" y="38">AI wrong 2% of the time</text>
+<path class="line dashed" d="M82,56 L112,56"/>
+<text class="axis" x="120" y="60">AI wrong 0.5% of the time</text>
+<text class="axis" x="335.0" y="284" text-anchor="middle">Cost of a wrong promise (log scale)</text>
+<text class="axis" x="14" y="130.0" text-anchor="middle" transform="rotate(-90 14 130.0)">Expected cost per request</text>
+</svg></div>
+        <figcaption>Figure 2. Expected cost per request of letting the AI answer alone, compared with a $3 human review. Above the crossover, review is cheaper. Illustrative error rates.</figcaption>
+      </figure>
+
+      <p>Two things follow. First, you need the error rate, and you only get it by testing. That's the subject of the next article in this series. Second, the costliest promises are worth checking even when the AI is very reliable, because a single mistake can cost more than thousands of reviews.</p>
+
+      <h2>Who can say yes</h2>
+      <p>Cost isn't the only dimension. A wrong answer about opening hours can be corrected with the next email. A refund that has been paid, or a donation that has been accepted, can't easily be undone. Putting both on a grid gives four kinds of decisions:</p>
+
+      <figure class="fig">
+        <div class="chart-scroll"><svg viewBox="0 0 640 360" role="img" aria-labelledby="a2f1t a2f1d" class="chart">
+<title id="a2f1t">Who can say yes, by cost of a mistake and how easy it is to undo</title>
+<desc id="a2f1d">Low cost and easy to undo: AI answers on its own. Low cost and hard to undo: AI answers from approved text only. High cost and easy to undo: AI drafts and a person approves. High cost and hard to undo: only a person decides.</desc>
+<rect class="quad q2" x="120" y="30" width="250" height="130" rx="6"/>
+<text class="qtitle q2" x="136" y="60">AI drafts, a person approves</text>
+<text class="qtext q2" x="136" y="88">Rescheduling a pickup</text>
+<text class="qtext q2" x="136" y="110">Quoting a price</text>
+<rect class="quad q4" x="376" y="30" width="250" height="130" rx="6"/>
+<text class="qtitle q4" x="392" y="60">Only a person decides</text>
+<text class="qtext q4" x="392" y="88">Refunds and payments</text>
+<text class="qtext q4" x="392" y="110">Accepting a donation</text>
+<text class="qtext q4" x="392" y="132">Any legal statement</text>
+<rect class="quad q1" x="120" y="166" width="250" height="130" rx="6"/>
+<text class="qtitle q1" x="136" y="196">AI answers on its own</text>
+<text class="qtext q1" x="136" y="224">Opening hours</text>
+<text class="qtext q1" x="136" y="246">Directions, FAQs</text>
+<rect class="quad q3" x="376" y="166" width="250" height="130" rx="6"/>
+<text class="qtitle q3" x="392" y="196">AI uses approved text only</text>
+<text class="qtext q3" x="392" y="224">Public posts</text>
+<text class="qtext q3" x="392" y="246">Sign-up confirmations</text>
+<text class="axis" x="108" y="99.0" text-anchor="end">High</text>
+<text class="axis" x="108" y="235.0" text-anchor="end">Low</text>
+<text class="label" x="20" y="163" text-anchor="middle" transform="rotate(-90 20 163)">Cost if the yes is wrong</text>
+<text class="axis" x="245.0" y="320" text-anchor="middle">Easy</text>
+<text class="axis" x="501.0" y="320" text-anchor="middle">Hard</text>
+<text class="label" x="373" y="342" text-anchor="middle">How easy it is to undo</text>
+</svg></div>
+        <figcaption>Figure 3. A decision-rights grid for an AI assistant. The examples are typical of a small nonprofit; each organization fills in its own.</figcaption>
+      </figure>
+
+      <p>Banks, trading desks and investment firms already work this way. Who can commit capital, sign a term sheet or exceed a risk limit is written down, and the riskier the action, the fewer people can take it. An AI assistant needs the same map, and it needs it written down before launch, not after the first bad promise.</p>
+
+      <h2>When someone talks the AI into yes</h2>
+      <p>The dealership case is a warning about manipulation. If an AI's authority lives only in its instructions, a clever message can talk it out of them. Programmer and writer Simon Willison describes a "lethal trifecta" for AI agents: access to private data, exposure to content an attacker could write, and a way to send information out. His advice is to never combine all three.<sup><a href="#a2-ref-6">6</a></sup></p>
+      <p>The same logic applies to promises. An AI that reads messages from the public shouldn't be able to commit money, stock or dates by itself. Put that authority in the system, as an approval step a person must click, rather than in a sentence of instructions asking the AI to be careful.</p>
+
+      <h2>What Anthropic recommends</h2>
+      <p>Anthropic's framework for safe agents says "humans should retain control over how their goals are pursued, particularly before high-stakes decisions are made." Its own example is an agent that finds wasteful software subscriptions: before it cancels any, "the company would likely want a human to give approval." Claude Code works the same way. It can read files without asking but "must ask for human approval before taking any actions that modify code or systems."<sup><a href="#a2-ref-7">7</a></sup> Anthropic's guide to building agents adds that they can "pause for human feedback at checkpoints" and recommends "extensive testing in sandboxed environments, along with the appropriate guardrails."<sup><a href="#a2-ref-8">8</a></sup></p>
+
+      <h2>What this means for product managers</h2>
+      <ul>
+        <li><strong>List every promise the product can make:</strong> prices, dates, refunds, availability, eligibility. If it isn't on the list, the AI shouldn't make it.</li>
+        <li><strong>Assign each promise to a square on the grid,</strong> and build the permission into the product rather than the prompt.</li>
+        <li><strong>Make approval fast.</strong> If approving takes longer than doing the work, people will route around it.</li>
+        <li><strong>Log every yes.</strong> When something goes wrong, you'll want to know who or what said it, and why.</li>
+      </ul>
+
+      <h2>A checklist for small teams</h2>
+      <ol>
+        <li>Write down everything your AI assistant could promise.</li>
+        <li>For each, estimate what a wrong promise would cost and whether it can be undone.</li>
+        <li>Place each on the grid: AI answers, AI answers from approved text, AI drafts and a person approves, or only a person decides.</li>
+        <li>Write a short "never promise" list into the assistant's instructions and into staff training.</li>
+        <li>Test how often the AI gets each kind of answer wrong, and move the lines as you learn.</li>
+      </ol>
+
+      <p>A soft yes feels free when it's made. The cost arrives later, in a refund, a tribunal ruling or a tungsten cube given away. Deciding in advance who can say yes is one of the cheapest things an organization can do.</p>
+
+      <section class="refs" aria-labelledby="a2-refs-h">
+        <h2 id="a2-refs-h">References</h2>
+        <ol>
+          <li id="a2-ref-1">AI Incident Database. <a href="https://incidentdatabase.ai/entities/chevrolet-of-watsonville">Chevrolet of Watsonville: Chevrolet Dealer Chatbot Agrees to Sell Tahoe for $1</a>. Incident date December 18, 2023.</li>
+          <li id="a2-ref-2">Manatt, Phelps &amp; Phillips. <a href="https://manatt.com/insights/newsletters/advertising-law/ai-gone-wild-airline-has-to-honor-a-refund-policy">AI Gone Wild: Airline Has to Honor a Refund Policy Its Chatbot Fabricated</a>. February 28, 2024, on <em>Moffatt v. Air Canada</em>, 2024 BCCRT 149.</li>
+          <li id="a2-ref-3">Anthropic. <a href="https://www.anthropic.com/research/project-vend-1">Project Vend: Can Claude run a small shop? (And why does that matter?)</a>. June 27, 2025.</li>
+          <li id="a2-ref-4">Jensen, M. C., and Meckling, W. H. <a href="https://papers.ssrn.com/abstract=94043">Theory of the Firm: Managerial Behavior, Agency Costs and Ownership Structure</a>. <em>Journal of Financial Economics</em> 3(4), 1976.</li>
+          <li id="a2-ref-5">University of Maryland. <a href="https://today.umd.edu/briefs/value-of-volunteer-time-jumps-to-36-14-per-hour-do-good-institute-and-nonprofit-find">Value of Volunteer Time Jumps to $36.14 per Hour</a>. April 23, 2026.</li>
+          <li id="a2-ref-6">Willison, S. <a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/">The lethal trifecta for AI agents</a>. June 16, 2025.</li>
+          <li id="a2-ref-7">Anthropic. <a href="https://www.anthropic.com/news/our-framework-for-developing-safe-and-trustworthy-agents">Our framework for developing safe and trustworthy agents</a>. August 4, 2025.</li>
+          <li id="a2-ref-8">Anthropic. <a href="https://www.anthropic.com/engineering/building-effective-agents">Building effective agents</a>. December 19, 2024.</li>
+        </ol>
+      </section>
+
+      <p class="next">Previous in this series: <a href="the-14-dollar-ai-and-the-50-hour-human.html">The $14 AI and the 50-hour human</a>. Next: <a href="backtest-your-ai-like-a-quant.html">Backtest your AI like a quant</a>.</p>
+      <a class="back" href="index.html">Back to all posts</a>
+    </article>
+  </main>
+
+  <footer>
+    <span>Roslyn Willoughby, Austin, Texas</span>
+    <span><a href="mailto:willoughbyroslyn@gmail.com">willoughbyroslyn@gmail.com</a></span>
+  </footer>
+
+  <script src="../js/site.js"></script>
+</body>
+</html>

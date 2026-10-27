@@ -246,3 +246,21 @@ footer {
 .chart .seg.range { fill: var(--accent); opacity: 0.35; }
 .chart .ref { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; }
 .series { color: var(--muted); font-size: 15px; margin: 0 0 6px; }
+.chart .line.dashed { stroke-dasharray: 6 4; }
+.chart .line.muted { stroke: var(--fig-mid); }
+.chart .dot.muted { fill: var(--fig-mid); }
+.chart .label.muted { fill: var(--muted); }
+.chart .quad.q1 { fill: var(--accent-tint); }
+.chart .quad.q2, .chart .quad.q3 { fill: var(--fig-muted); }
+.chart .quad.q4 { fill: var(--accent); }
+.chart .qtitle { font-size: 15px; font-weight: 600; fill: var(--ink); font-family: "Public Sans", system-ui, sans-serif; }
+.chart .qtext { font-size: 14px; fill: var(--muted); font-family: "Public Sans", system-ui, sans-serif; }
+.chart .qtitle.q4, .chart .qtext.q4 { fill: var(--bg); }
+.cases { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.cases li { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--rule); }
+.cases li:first-child { border-top: none; }
+.cases .when { font-size: 15px; }
+.cases p { margin: 0; }
+@media (max-width: 560px) { .cases li { grid-template-columns: 1fr; gap: 2px; } }
+.post .rule { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; }
+.post .next { color: var(--muted); font-size: 15px; margin-top: 32px; }

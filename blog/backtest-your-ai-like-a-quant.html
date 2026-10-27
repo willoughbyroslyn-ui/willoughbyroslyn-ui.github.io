@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Backtest your AI like a quant | Roslyn Willoughby</title>
+  <meta name="description" content="Treat AI instructions like a trading strategy: test on cases with known answers, watch for overfitting and leakage, and score every category separately.">
+  <link rel="canonical" href="https://willoughbyroslyn-ui.github.io/blog/backtest-your-ai-like-a-quant.html">
+  <meta name="author" content="Roslyn Willoughby">
+  <link rel="icon" type="image/png" href="../rose_favi.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../css/site.css">
+</head>
+
+<body>
+  <nav class="nav" aria-label="Main">
+    <div class="nav-inner">
+      <a class="nav-name" href="../index.html">Roslyn Willoughby</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#news">News</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#research">Research</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#awards">Awards</a></li>
+        <li><a href="index.html" aria-current="page">Blog</a></li>
+        <li><a href="../CV_Roslyn_Willoughby_Final.pdf" target="_blank" rel="noopener">CV</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <article class="post">
+      <header class="page-head">
+        <p class="series">The Economics of AI at Work, part 3</p>
+        <h1>Backtest your AI like a quant</h1>
+        <p class="meta"><time datetime="2026-10-26">October 26, 2026</time>, 5 minute read</p>
+      </header>
+
+      <p>Anthropic's engineers describe a pattern they see in teams building AI tools. Without good tests, it's easy to get "stuck in reactive loops—catching issues only in production, where fixing one failure creates others."<sup><a href="#a3-ref-1">1</a></sup> Quantitative investors have a name for this problem, and decades of hard lessons about it. They call it overfitting the backtest.</p>
+
+      <h2>What a backtest is</h2>
+      <p>Before a quant fund trades a strategy with real money, it runs the strategy on historical data where the outcomes are already known. That's a backtest. The same idea works for AI: before trusting an assistant's instructions, run them on past cases where you already know the right answer, and count how often the AI gets it right.</p>
+      <p>Most small teams skip this. They write instructions, try a few examples, and launch. When something goes wrong, they add a line to the instructions to fix that case. Then another, and another.</p>
+
+      <h2>The overfitting trap</h2>
+      <p>Each patch fixes the case in front of you. Scored on the cases you patched for, the instructions look better every week. Scored on cases they've never seen, they can stop improving, or get worse, as the instructions fill up with special rules that collide with each other.</p>
+
+      <figure class="fig">
+        <div class="chart-scroll"><svg viewBox="0 0 640 280" role="img" aria-labelledby="a3f1t a3f1d" class="chart">
+<title id="a3f1t">Accuracy on known cases and on new cases as instructions are patched, illustrative</title>
+<desc id="a3f1d">Illustrative. Accuracy on the cases used to write the patches rises toward 100 percent. Accuracy on new cases rises at first, peaks after a few patches, then falls back.</desc>
+<line class="grid" x1="64" x2="600" y1="230.0" y2="230.0"/>
+<text class="axis" x="54" y="234.0" text-anchor="end">60%</text>
+<line class="grid" x1="64" x2="600" y1="177.5" y2="177.5"/>
+<text class="axis" x="54" y="181.5" text-anchor="end">70%</text>
+<line class="grid" x1="64" x2="600" y1="125.0" y2="125.0"/>
+<text class="axis" x="54" y="129.0" text-anchor="end">80%</text>
+<line class="grid" x1="64" x2="600" y1="72.5" y2="72.5"/>
+<text class="axis" x="54" y="76.5" text-anchor="end">90%</text>
+<line class="grid" x1="64" x2="600" y1="20.0" y2="20.0"/>
+<text class="axis" x="54" y="24.0" text-anchor="end">100%</text>
+<text class="axis" x="64.0" y="252" text-anchor="middle">0</text>
+<text class="axis" x="171.2" y="252" text-anchor="middle">2</text>
+<text class="axis" x="278.4" y="252" text-anchor="middle">4</text>
+<text class="axis" x="385.6" y="252" text-anchor="middle">6</text>
+<text class="axis" x="492.8" y="252" text-anchor="middle">8</text>
+<text class="axis" x="600.0" y="252" text-anchor="middle">10</text>
+<path class="line" d="M64.0,177.5 L117.6,125.6 L171.2,90.8 L224.8,67.4 L278.4,51.8 L332.0,41.3 L385.6,34.3 L439.2,29.6 L492.8,26.4 L546.4,24.3 L600.0,22.9"/>
+<path class="line muted" d="M64.0,177.5 L117.6,153.7 L171.2,144.8 L224.8,143.5 L278.4,146.2 L332.0,150.9 L385.6,156.6 L439.2,162.9 L492.8,169.4 L546.4,176.1 L600.0,182.8"/>
+<text class="label" x="596.0" y="42.9" text-anchor="end">Cases you patched for</text>
+<text class="label muted" x="596.0" y="204.8" text-anchor="end">New cases</text>
+<circle class="dot muted" cx="224.8" cy="143.5" r="5"><title>Best on new cases after 3 patches</title></circle>
+<text class="axis" x="224.8" y="131.5" text-anchor="middle">Best on new cases</text>
+<text class="axis" x="332.0" y="274" text-anchor="middle">Patches made to the instructions</text>
+</svg></div>
+        <figcaption>Figure 1. Accuracy on the cases used to write the patches, compared with accuracy on new cases, as instructions are patched one failure at a time. Illustrative.</figcaption>
+      </figure>
+
+      <p>Finance learned this the expensive way. Researchers David Bailey, Jonathan Borwein, Marcos López de Prado and Qiji Jim Zhu showed that the usual safeguards against overfitting, such as setting aside some data for testing, "tend to be unreliable and inaccurate in the context of investment backtests." They built a method to estimate the probability that a backtest is overfit, because a strategy that looks great in history often fails in real trading.<sup><a href="#a3-ref-2">2</a></sup></p>
+
+      <h2>Try enough versions and one will look good</h2>
+      <p>There's a second trap: trying many versions and keeping the best. Finance researchers Campbell Harvey, Yan Liu and Heqing Zhu reviewed hundreds of factors that researchers claimed could predict stock returns. Because so many had been tested, they concluded that "most claimed research findings in financial economics are likely false," and argued a new factor should clear a much higher statistical bar.<sup><a href="#a3-ref-3">3</a></sup></p>
+      <p>The arithmetic is simple. If a test has a 5% chance of a false positive, and you try 20 versions that are all equally good, there's a 64% chance at least one looks significantly better by luck.</p>
+
+      <figure class="fig">
+        <div class="chart-scroll"><svg viewBox="0 0 640 260" role="img" aria-labelledby="a3f3t a3f3d" class="chart">
+<title id="a3f3t">Chance that at least one of N equally good versions looks significantly better by luck</title>
+<desc id="a3f3d">At a 5 percent significance level: 5 percent for 1 version, 23 percent for 5, 40 percent for 10, 64 percent for 20, and 92 percent for 50.</desc>
+<line class="grid" x1="70" x2="590" y1="200.0" y2="200.0"/>
+<text class="axis" x="60" y="204.0" text-anchor="end">0%</text>
+<line class="grid" x1="70" x2="590" y1="155.0" y2="155.0"/>
+<text class="axis" x="60" y="159.0" text-anchor="end">25%</text>
+<line class="grid" x1="70" x2="590" y1="110.0" y2="110.0"/>
+<text class="axis" x="60" y="114.0" text-anchor="end">50%</text>
+<line class="grid" x1="70" x2="590" y1="65.0" y2="65.0"/>
+<text class="axis" x="60" y="69.0" text-anchor="end">75%</text>
+<line class="grid" x1="70" x2="590" y1="20.0" y2="20.0"/>
+<text class="axis" x="60" y="24.0" text-anchor="end">100%</text>
+<rect class="seg small" x="90.0" y="191.0" width="64" height="9.0" rx="4"><title>1 versions: 5%</title></rect>
+<text class="label" x="122.0" y="183.0" text-anchor="middle">5%</text>
+<text class="axis" x="122.0" y="220" text-anchor="middle">1</text>
+<rect class="seg small" x="194.0" y="159.3" width="64" height="40.7" rx="4"><title>5 versions: 23%</title></rect>
+<text class="label" x="226.0" y="151.3" text-anchor="middle">23%</text>
+<text class="axis" x="226.0" y="220" text-anchor="middle">5</text>
+<rect class="seg small" x="298.0" y="127.8" width="64" height="72.2" rx="4"><title>10 versions: 40%</title></rect>
+<text class="label" x="330.0" y="119.8" text-anchor="middle">40%</text>
+<text class="axis" x="330.0" y="220" text-anchor="middle">10</text>
+<rect class="seg small" x="402.0" y="84.5" width="64" height="115.5" rx="4"><title>20 versions: 64%</title></rect>
+<text class="label" x="434.0" y="76.5" text-anchor="middle">64%</text>
+<text class="axis" x="434.0" y="220" text-anchor="middle">20</text>
+<rect class="seg small" x="506.0" y="33.9" width="64" height="166.1" rx="4"><title>50 versions: 92%</title></rect>
+<text class="label" x="538.0" y="25.9" text-anchor="middle">92%</text>
+<text class="axis" x="538.0" y="220" text-anchor="middle">50</text>
+<text class="axis" x="330.0" y="244" text-anchor="middle">Number of versions tried on the same test cases</text>
+</svg></div>
+        <figcaption>Figure 2. Chance that at least one of several equally good versions looks significantly better by luck, at a 5% significance level. Calculated as 1 − 0.95<sup>N</sup>.</figcaption>
+      </figure>
+
+      <p>For an AI assistant, this means that trying 20 versions of the instructions on the same 30 test cases, and keeping the winner, may only find the luckiest version. Confirm the winner on cases it hasn't been tuned against.</p>
+
+      <h2>Tests that already contain the answer</h2>
+      <p>Quants call it look-ahead bias when a backtest uses information that wouldn't have been available at the time. Machine learning researchers call it leakage. Sayash Kapoor and Arvind Narayanan at Princeton found leakage errors in 329 papers across 17 scientific fields, sometimes producing "wildly overoptimistic conclusions."<sup><a href="#a3-ref-4">4</a></sup></p>
+      <p>The AI version is common and easy to miss. A team copies its test cases into the instructions as examples, and the AI "passes" because it has already seen the answers. Keep the examples you teach with separate from the cases you test with.</p>
+
+      <h2>One number can hide the failure</h2>
+      <p>The last trap is trusting a single overall score. I learned this in a student project. I built a Naive Bayes model to predict cervical cancer from a public dataset of 858 patients, in which only 18 had a cancer diagnosis. My model was 77.5% accurate. But a rule that always predicts "no cancer" would have been 97.3% accurate on the same test set, while catching none of the cases that mattered. My model caught 1 of the 7.<sup><a href="#a3-ref-5">5</a></sup></p>
+
+      <figure class="fig">
+        <div class="chart-scroll"><svg viewBox="0 0 640 210" role="img" aria-labelledby="a3f2t a3f2d" class="chart">
+<title id="a3f2t">Accuracy compared with cancer cases caught</title>
+<desc id="a3f2d">A rule that always predicts no cancer is 97.3 percent accurate and catches none of the 7 cancer cases. The Naive Bayes model is 77.5 percent accurate and catches 1 of 7, or 14 percent.</desc>
+<rect class="seg large" x="230" y="6" width="12" height="12" rx="3"/><text class="axis" x="248" y="16.5">Overall accuracy</text>
+<rect class="seg small" x="380" y="6" width="12" height="12" rx="3"/><text class="axis" x="398" y="16.5">Cancer cases caught</text>
+<line class="grid" x1="230.0" x2="230.0" y1="30" y2="176"/>
+<text class="axis" x="230.0" y="196" text-anchor="middle">0%</text>
+<line class="grid" x1="320.0" x2="320.0" y1="30" y2="176"/>
+<text class="axis" x="320.0" y="196" text-anchor="middle">25%</text>
+<line class="grid" x1="410.0" x2="410.0" y1="30" y2="176"/>
+<text class="axis" x="410.0" y="196" text-anchor="middle">50%</text>
+<line class="grid" x1="500.0" x2="500.0" y1="30" y2="176"/>
+<text class="axis" x="500.0" y="196" text-anchor="middle">75%</text>
+<line class="grid" x1="590.0" x2="590.0" y1="30" y2="176"/>
+<text class="axis" x="590.0" y="196" text-anchor="middle">100%</text>
+<text class="label" x="0" y="68">Always predict “no cancer”</text>
+<rect class="seg large" x="230" y="38" width="350.3" height="24" rx="4"><title>Always predict “no cancer”: 97.3%</title></rect>
+<text class="label" x="588.3" y="55">97.3%</text>
+<text class="label" x="238.0" y="85">0 of 7</text>
+<text class="label" x="0" y="138">My Naive Bayes model</text>
+<rect class="seg large" x="230" y="108" width="279.0" height="24" rx="4"><title>My Naive Bayes model: 77.5%</title></rect>
+<text class="label" x="517.0" y="125">77.5%</text>
+<rect class="seg small" x="230" y="138" width="51.5" height="24" rx="4"><title>My Naive Bayes model: 1 of 7</title></rect>
+<text class="label" x="289.5" y="155">1 of 7</text>
+</svg></div>
+        <figcaption>Figure 3. Overall accuracy compared with cancer cases caught, on a test set of 258 patients with 7 cancer cases. Source: my <a href="https://github.com/willoughbyroslyn-ui/naive_cancer_prediction">cervical cancer prediction project</a>.</figcaption>
+      </figure>
+
+      <p>AI assistants fail the same way. An assistant that sorts 95% of messages correctly might get every urgent one wrong, if urgent messages are rare. Score each category separately, and look hardest at the rare ones.</p>
+
+      <h2>How to backtest an AI assistant</h2>
+      <ol>
+        <li><strong>Start small, from real failures.</strong> Anthropic's advice: "20-50 simple tasks drawn from real failures is a great start."<sup><a href="#a3-ref-1">1</a></sup></li>
+        <li><strong>Write the right answer for each case first,</strong> before changing the instructions.</li>
+        <li><strong>Hold some cases back.</strong> Keep about a third aside and don't look at them while you edit. They're your test of whether a change really helped.</li>
+        <li><strong>Score every category separately,</strong> especially rare and high-stakes ones.</li>
+        <li><strong>Read the outputs, not just the scores.</strong> Anthropic: "Reading transcripts is how you verify that your eval is measuring what actually matters."<sup><a href="#a3-ref-1">1</a></sup></li>
+        <li><strong>Rerun every test after every change,</strong> so a fix for one case doesn't quietly break another.</li>
+        <li><strong>Decide what score is good enough.</strong> As AI engineer Hamel Husain puts it, "Your pass rate is a product decision."<sup><a href="#a3-ref-6">6</a></sup></li>
+      </ol>
+      <p>Husain also argues that unsuccessful AI products "almost always share a common root cause: a failure to create robust evaluation systems."<sup><a href="#a3-ref-6">6</a></sup> Anthropic's guide to building agents makes a related point: find the simplest solution possible, and add complexity only when it's needed.<sup><a href="#a3-ref-7">7</a></sup></p>
+
+      <h2>Where else this applies</h2>
+      <ul>
+        <li><strong>Product managers:</strong> these tests, usually called evals, are the AI version of a spec. Writing them first forces the team to agree on what "good" means.</li>
+        <li><strong>Investors and analysts:</strong> checking a thesis or a model against past deals, before trusting it on the next one, is a backtest under another name.</li>
+        <li><strong>Small organizations:</strong> twenty past emails with the right answers written down is enough to start, and it's the only way to know the error rate the previous article in this series depends on.</li>
+      </ul>
+
+      <p>Quants learned to distrust a strategy that looks perfect in hindsight. The same instinct makes AI tools trustworthy: test on cases you didn't tune for, count failures by category, and treat a perfect score as a warning sign.</p>
+
+      <section class="refs" aria-labelledby="a3-refs-h">
+        <h2 id="a3-refs-h">References</h2>
+        <ol>
+          <li id="a3-ref-1">Anthropic. <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">Demystifying evals for AI agents</a>. January 9, 2026.</li>
+          <li id="a3-ref-2">Bailey, D. H., Borwein, J., López de Prado, M., and Zhu, Q. J. <a href="https://papers.ssrn.com/abstract=2326253">The Probability of Backtest Overfitting</a>. <em>Journal of Computational Finance</em>.</li>
+          <li id="a3-ref-3">Harvey, C. R., Liu, Y., and Zhu, H. <a href="https://nber.org/papers/w20592">…and the Cross-Section of Expected Returns</a>. NBER Working Paper 20592, 2014.</li>
+          <li id="a3-ref-4">Kapoor, S., and Narayanan, A. <a href="https://arxiv.org/abs/2207.07048v1">Leakage and the Reproducibility Crisis in ML-based Science</a>. arXiv:2207.07048, 2022.</li>
+          <li id="a3-ref-5">Willoughby, R. <a href="https://github.com/willoughbyroslyn-ui/naive_cancer_prediction">Cervical Cancer Risk Prediction (Naive Bayes)</a>. GitHub, using the UCI Cervical Cancer Risk Factors dataset.</li>
+          <li id="a3-ref-6">Husain, H. <a href="https://hamel.dev/blog/posts/evals/">Your AI Product Needs Evals</a>. 2024, as quoted by <a href="https://simonwillison.net/2024/Mar/31/your-ai-product-needs-evals">Simon Willison</a>.</li>
+          <li id="a3-ref-7">Anthropic. <a href="https://www.anthropic.com/engineering/building-effective-agents">Building effective agents</a>. December 19, 2024.</li>
+        </ol>
+      </section>
+
+      <p class="next">Previous in this series: <a href="the-economics-of-a-soft-yes.html">The economics of a soft yes</a>. Start of the series: <a href="the-14-dollar-ai-and-the-50-hour-human.html">The $14 AI and the 50-hour human</a>.</p>
+      <a class="back" href="index.html">Back to all posts</a>
+    </article>
+  </main>
+
+  <footer>
+    <span>Roslyn Willoughby, Austin, Texas</span>
+    <span><a href="mailto:willoughbyroslyn@gmail.com">willoughbyroslyn@gmail.com</a></span>
+  </footer>
+
+  <script src="../js/site.js"></script>
+</body>
+</html>
