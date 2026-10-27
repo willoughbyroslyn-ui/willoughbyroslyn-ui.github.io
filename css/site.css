@@ -243,3 +243,6 @@ footer {
 .post td:first-child { min-width: 112px; }
 .chart-scroll { overflow-x: auto; }
 @media (max-width: 560px) { .chart-scroll .chart { min-width: 540px; } }
+.chart .seg.range { fill: var(--accent); opacity: 0.35; }
+.chart .ref { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.series { color: var(--muted); font-size: 15px; margin: 0 0 6px; }
